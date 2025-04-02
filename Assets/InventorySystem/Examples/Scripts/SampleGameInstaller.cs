@@ -1,4 +1,7 @@
 using InventorySystem.Core;
+using InventorySystem.Core.Inventories;
+using InventorySystem.Core.Items;
+using InventorySystem.Core.Recipes;
 using UnityEngine;
 using Zenject;
 

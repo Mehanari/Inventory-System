@@ -1,4 +1,6 @@
 using InventorySystem.Core;
+using InventorySystem.Core.Inventories;
+using InventorySystem.Core.Items;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +9,7 @@ using Zenject;
 namespace InventorySystem.Examples.Scripts
 {
     /// <summary>
-    /// This is a script that makes a button add item of a specified id to a given inventory. 
+    /// This is a script that makes a button add itemFile of a specified id to a given inventory. 
     /// </summary>
     [RequireComponent(typeof(Button))]
     public class GetItemButton : MonoBehaviour
@@ -18,7 +20,7 @@ namespace InventorySystem.Examples.Scripts
         
         private Inventory _inventory;
         private ItemsDatabase _itemsDatabase;
-        [CanBeNull] private Item _item;
+        [CanBeNull] private ItemData _item;
         
         private Button _button;
 
@@ -36,7 +38,7 @@ namespace InventorySystem.Examples.Scripts
 
         private void Start()
         {
-            if (_itemsDatabase.TryGetItem(itemId, out _item))
+            if (_itemsDatabase.TryGetData(itemId, out _item))
             {
                 SetTextureToIcon(_item.Texture);
             }
@@ -52,11 +54,11 @@ namespace InventorySystem.Examples.Scripts
         {
             if (_item is null)
             {
-                Debug.LogError("Cannot process item with id \"" + itemId + "\", no item with this id in the database.");
+                Debug.LogError("Cannot process itemFile with id \"" + itemId + "\", no itemFile with this id in the database.");
             }
             else
             {
-                _inventory.AddItem(_item);
+                _inventory.AddItem(_item.Id);
             }
         }
 

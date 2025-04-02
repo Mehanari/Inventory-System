@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd6f36fadd97fa45b0de1d307a57a52, type: 3}
   m_Name: Copper
   m_EditorClassIdentifier: 
-  id: copper
-  itemName: Copper
-  description: A cheap conductor.
-  texture: {fileID: 2800000, guid: 39a37e275dbf65941a6e7a21b4767528, type: 3}
+  data:
+    id: copper
+    itemName: Copper
+    description: 
+    texture: {fileID: 2800000, guid: 39a37e275dbf65941a6e7a21b4767528, type: 3}

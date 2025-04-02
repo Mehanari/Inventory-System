@@ -1,5 +1,7 @@
 using System.Text;
 using InventorySystem.Core;
+using InventorySystem.Core.Inventories;
+using InventorySystem.Core.Items;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -33,12 +35,12 @@ namespace InventorySystem.Examples.Scripts
             _inventory.ItemRemoved -= OnItemRemoved;
         }
 
-        private void OnItemAdded(Item arg1, int arg2)
+        private void OnItemAdded(string itemId, int count)
         {
             UpdateText();
         }
 
-        private void OnItemRemoved(Item item, int count)
+        private void OnItemRemoved(string itemId, int count)
         {
             UpdateText();
         }
@@ -48,14 +50,14 @@ namespace InventorySystem.Examples.Scripts
             var stringBuilder = new StringBuilder();
             foreach (var pair in _inventory.Items)
             {
-                if (_itemsDatabase.ContainsItem(pair.Key))
+                if (_itemsDatabase.ContainsData(pair.Key))
                 {
-                    var item = _itemsDatabase.GetItem(pair.Key);
+                    var item = _itemsDatabase.GetData(pair.Key);
                     stringBuilder.Append(item.ItemName + ": " + pair.Value + "\n");
                 }
                 else
                 {
-                    Debug.LogWarning("Unknown item with id: " + pair.Value);
+                    Debug.LogWarning("Unknown itemFile with id: " + pair.Value);
                     stringBuilder.Append("UNKNOWN_ITEM: " + pair.Value + "\n");
                 }
             }

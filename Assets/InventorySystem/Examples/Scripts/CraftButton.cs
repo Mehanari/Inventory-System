@@ -1,4 +1,7 @@
 ﻿using InventorySystem.Core;
+using InventorySystem.Core.Inventories;
+using InventorySystem.Core.Items;
+using InventorySystem.Core.Recipes;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,8 +18,8 @@ namespace InventorySystem.Examples.Scripts
         private Inventory _inventory;
         private ItemsDatabase _itemsDatabase;
         private RecipeDatabase _recipeDatabase;
-        [CanBeNull] private Recipe _recipe;
-        [CanBeNull] private Item _craftedItem;
+        [CanBeNull] private RecipeData _recipe;
+        [CanBeNull] private ItemData _craftedItem;
 
         private Button _button;
         private CraftingController _controller;
@@ -37,16 +40,16 @@ namespace InventorySystem.Examples.Scripts
 
         private void Start()
         {
-            _itemsDatabase.TryGetItem(craftedItemId, out _craftedItem);
-            _recipeDatabase.TryGetRecipe(recipeId, out _recipe);
+            _itemsDatabase.TryGetData(craftedItemId, out _craftedItem);
+            _recipeDatabase.TryGetData(recipeId, out _recipe);
             if (_craftedItem is null)
             {
-                Debug.LogError("Cannot process item with id \"" + craftedItemId + "\" because this item is not in items database.");
+                Debug.LogError("Cannot process itemFile with id \"" + craftedItemId + "\" because this itemFile is not in items database.");
                 return;
             }
             if (_recipe is null)
             {
-                Debug.LogError("Cannot process recipe with id \"" + recipeId + "\" because this recipe is not in recipes database.");
+                Debug.LogError("Cannot process recipeFile with id \"" + recipeId + "\" because this recipeFile is not in recipes database.");
                 return;
             }
             _button.onClick.AddListener(OnClick);
@@ -56,7 +59,10 @@ namespace InventorySystem.Examples.Scripts
         {
             if (_controller.Craft(_inventory, _recipe))
             {
-                _inventory.AddItem(_craftedItem);
+                if (_craftedItem is not null)
+                {
+                    _inventory.AddItem(_craftedItem.Id);
+                }
             }
         }
     }

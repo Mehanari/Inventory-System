@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b56523d5da4495a843e4df6334fba2, type: 3}
   m_Name: RecipeDatabase
   m_EditorClassIdentifier: 
-  recipes:
+  dataFiles:
   - {fileID: 11400000, guid: e8b87de0c49c5fd449bcaa0e7710e3b0, type: 2}
+  data:
+  - id: bronze_recipe
+    expenses:
+    - id: copper
+      count: 3
+    - id: tin
+      count: 1

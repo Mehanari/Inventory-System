@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using InventorySystem.Core.Inventories;
 
 namespace InventorySystem.Core
 {
@@ -18,33 +19,33 @@ namespace InventorySystem.Core
         
         public DictInventory() { }
         
-        protected override void ProcessAddItem(Item item, int count = 1)
+        protected override void ProcessAddItem(string itemId, int count = 1)
         {
-            if (_items.ContainsKey(item.Id))
+            if (_items.ContainsKey(itemId))
             {
-                _items[item.Id] += count;
+                _items[itemId] += count;
             }
             else
             {
-                _items.Add(item.Id, count);
+                _items.Add(itemId, count);
             }
         }
 
-        protected override void ProcessRemoveItem(Item item, int count = 1)
+        protected override void ProcessRemoveItem(string itemId, int count = 1)
         {
-            if (_items.ContainsKey(item.Id))
+            if (_items.ContainsKey(itemId))
             {
-                _items[item.Id] -= count;
-                if (_items[item.Id] < 0)
+                _items[itemId] -= count;
+                if (_items[itemId] < 0)
                 {
-                    _items[item.Id] = 0;
+                    _items[itemId] = 0;
                 }
             }
         }
 
-        public override int ItemCount(Item item)
+        public override int ItemCount(string itemId)
         {
-            if (_items.TryGetValue(item.Id, out var count))
+            if (_items.TryGetValue(itemId, out var count))
             {
                 return count;
             }

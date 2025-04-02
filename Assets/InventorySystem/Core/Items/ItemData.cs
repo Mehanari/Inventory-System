@@ -1,10 +1,10 @@
+﻿using System;
 using UnityEngine;
 
-namespace InventorySystem.Core
+namespace InventorySystem.Core.Items
 {
-    [CreateAssetMenu(fileName = "Item", menuName = "InventorySystem/Item")]
-
-    public class Item : ScriptableObject
+    [Serializable]
+    public class ItemData: IUnique
     {
         [SerializeField] private string id;
         [SerializeField] private string itemName;

@@ -4,7 +4,7 @@ using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace InventorySystem.Core
+namespace InventorySystem.Core.Inventories
 {
     public static class InventoryIO
     {

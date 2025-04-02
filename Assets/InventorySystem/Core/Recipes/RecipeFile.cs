@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace InventorySystem.Core
+namespace InventorySystem.Core.Recipes
 {
+    /// <summary>
+    /// The purpose of this script is to provide a handy way to edit and create new recipes.
+    /// It provides validation and can be used in recipes database.
+    /// </summary>
     [CreateAssetMenu(menuName = "InventorySystem/Recipe", fileName = "DefaultRecipe")]
-    public class Recipe : ScriptableObject, ISerializationCallbackReceiver
+    public class RecipeFile : DataFile<RecipeData>, ISerializationCallbackReceiver
     {
         [Serializable]
         private class ItemToCount
@@ -18,9 +22,6 @@ namespace InventorySystem.Core
         [SerializeField] private List<ItemToCount> expenses = new();
 
         private Dictionary<string, int> _expensesDict = new();
-
-        public IReadOnlyDictionary<string, int> Expenses => _expensesDict;
-        public string Id => id;
         
         public void OnBeforeSerialize() { }
 
@@ -32,11 +33,12 @@ namespace InventorySystem.Core
         private void ResetExpensesDict()
         {
             _expensesDict.Clear();
-            foreach (var expense in expenses)
+            for (int i = 0; i < expenses.Count; i++)
             {
+                var expense = expenses[i];
                 if (_expensesDict.ContainsKey(expense.itemId))
                 {
-                    Debug.LogError("Item with id \"" + expense.itemId + "\" is already in the recipe. New instance with same id and count " + expense.count + " will be ignored.");
+                    Debug.LogError("ItemFile with id \"" + expense.itemId + "\" is already in the recipe. New instance with same id and count " + expense.count + " will be ignored.\nEntry number in list: " + (i+1) + ".");
                 }
                 else
                 {
@@ -44,5 +46,7 @@ namespace InventorySystem.Core
                 }
             }
         }
+
+        public override RecipeData Data => new(id, _expensesDict);
     }
 }

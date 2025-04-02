@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using InventorySystem.Core.Inventories;
+using InventorySystem.Core.Items;
+using InventorySystem.Core.Recipes;
+using UnityEngine;
 
 namespace InventorySystem.Core
 {
@@ -11,14 +14,14 @@ namespace InventorySystem.Core
             _itemsDatabase = itemsDatabase;
         }
 
-        public bool CanCraft(Inventory inventory, Recipe recipe)
+        public bool CanCraft(Inventory inventory, RecipeData recipe)
         {
             var enoughResources = true;
             foreach (var expense in recipe.Expenses)
             {
-                if (_itemsDatabase.TryGetItem(expense.Key, out var item))
+                if (_itemsDatabase.TryGetData(expense.Key, out var item))
                 {
-                    var owned = inventory.ItemCount(item);
+                    var owned = inventory.ItemCount(item.Id);
                     var needed = expense.Value;
                     if (needed > owned)
                     {
@@ -42,13 +45,13 @@ namespace InventorySystem.Core
         /// <param name="inventory"></param>
         /// <param name="recipe"></param>
         /// <returns></returns>
-        public bool Craft(Inventory inventory, Recipe recipe)
+        public bool Craft(Inventory inventory, RecipeData recipe)
         {
             if (!CanCraft(inventory, recipe)) return false;
             foreach (var expense in recipe.Expenses)
             {
-                var item = _itemsDatabase.GetItem(expense.Key);
-                inventory.RemoveItem(item, expense.Value);
+                var item = _itemsDatabase.GetData(expense.Key);
+                inventory.RemoveItem(item.Id, expense.Value);
             }
 
             return true;
