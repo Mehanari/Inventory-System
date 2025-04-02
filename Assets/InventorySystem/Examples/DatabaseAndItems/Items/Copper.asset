@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd6f36fadd97fa45b0de1d307a57a52, type: 3}
+  m_Name: Copper
+  m_EditorClassIdentifier: 
+  id: copper
+  itemName: Copper
+  description: A cheap conductor.
+  texture: {fileID: 2800000, guid: 39a37e275dbf65941a6e7a21b4767528, type: 3}
