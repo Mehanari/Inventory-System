@@ -9,7 +9,7 @@ namespace ScriptableDatabase
 #if UNITY_EDITOR
         [SerializeField] private List<DataFile<T>> dataFiles = new List<DataFile<T>>();
 #else
-        [System.NonSerialized] private List<ItemFile> dataFiles = new List<ItemFile>();
+        [System.NonSerialized] private List<DataFile<T>> dataFiles = new List<DataFile<T>>();
 #endif
         
         [SerializeField, HideInInspector] private List<T> data = new();
