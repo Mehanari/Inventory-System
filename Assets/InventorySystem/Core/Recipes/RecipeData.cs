@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ScriptableDatabase;
 using UnityEngine;
 
 namespace InventorySystem.Core.Recipes

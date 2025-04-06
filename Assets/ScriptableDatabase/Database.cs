@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace InventorySystem.Core
+namespace ScriptableDatabase
 {
     public abstract class Database<T> : ScriptableObject, ISerializationCallbackReceiver where T : IUnique
     {

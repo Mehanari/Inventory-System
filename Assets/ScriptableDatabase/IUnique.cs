@@ -1,4 +1,4 @@
-﻿namespace InventorySystem.Core
+﻿namespace ScriptableDatabase
 {
     /// <summary>
     /// Demands a class to have an id.

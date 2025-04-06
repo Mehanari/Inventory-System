@@ -1,4 +1,5 @@
 ﻿using System;
+using ScriptableDatabase;
 using UnityEngine;
 
 namespace InventorySystem.Core.Items

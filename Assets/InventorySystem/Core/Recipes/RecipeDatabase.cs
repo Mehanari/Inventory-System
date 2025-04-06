@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ScriptableDatabase;
+using UnityEngine;
 
 namespace InventorySystem.Core.Recipes
 {

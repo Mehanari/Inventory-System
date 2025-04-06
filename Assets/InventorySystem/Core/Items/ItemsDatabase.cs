@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ScriptableDatabase;
 using UnityEngine;
 
 namespace InventorySystem.Core.Items
